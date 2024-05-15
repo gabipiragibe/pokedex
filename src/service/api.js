@@ -1,9 +1,16 @@
 // import axios from 'axios';
+// import { useEffect } from 'react';
 
-// axios.get('https://pokeapi.co/api/v2/pokemon/ditto')
-//   .then(function (response) {
+//   useEffect(() => {
+//     axios
+//       .get("https://pokeapi.co/api/v2/pokemon/1")
+//       .then(function (response) {
+//         setModificadorDoRetornoRequest(response.data);
+//         console.log("response", response);
+//       });
+//   }, []);
 
-//     console.log(response);
-//   })
+// };
+
+// criar um input que faça a busca
 // axios.get(`pokemon.com/${valordoinput}`)
-
