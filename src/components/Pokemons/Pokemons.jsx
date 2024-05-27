@@ -9,7 +9,7 @@ export const Pokemons = () => {
 
   useEffect(() => {
   const fetchData = async () => {
-      const response = await getPokemonDetails(10);
+      const response = await getPokemonDetails(6);
       setPokemonInfo(response);
       console.log(response)
     }
