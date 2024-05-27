@@ -1,10 +1,23 @@
+import { Container, Input, Title } from "./styles";
+
 import React from "react";
+import { useState } from "react";
 
 export const Navbar = () => {
+  const [inputValue, setInputValue] = useState('');
 
-  return (
-    <div>
-      <p>teste de navbar</p>
-    </div>
-  );
-};
+    const handleChange = () => {
+      setInputValue();
+    };
+
+    return (
+      <Container>
+        <Title>Pokédex</Title>
+        <Input
+          type="text"
+          value={inputValue}
+          onChange={handleChange}
+        />
+      </Container>
+    );
+  };

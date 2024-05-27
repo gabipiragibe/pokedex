@@ -1,34 +1,33 @@
-import * as Styled from "./styles";
+import * as S from "./styles";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState }  from "react";
 
-import React from "react";
-import axios from "axios";
+import { getPokemonDetails } from "../../service/getPokemonDetails";
 
 export const Pokemons = () => {
-  const [retornoDaRequest, setModificadorDoRetornoRequest] = useState([]);
+  const [pokemonInfo, setPokemonInfo] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("https://pokeapi.co/api/v2/pokemon/1")
-      .then(function (response) {
-        setModificadorDoRetornoRequest(response.data);
-        console.log("response", response);
-      });
+  const fetchData = async () => {
+      const response = await getPokemonDetails(10);
+      setPokemonInfo(response);
+      console.log(response)
+    }
+    fetchData();
   }, []);
 
   return (
-    <Styled.CardsContainer> 
-    <Styled.Card>  
-      {retornoDaRequest && (
+    <S.CardsContainer>
+    <S.Card>
+      {pokemonInfo && (
         <>
-          <h1>{retornoDaRequest.name}</h1>
-          <Styled.PerfilImage alt="imagem do pokemon" src={retornoDaRequest?.sprites?.front_default} />
-          <p><strong>#</strong> {retornoDaRequest.id}</p>
-          <p><strong>Peso:</strong>{retornoDaRequest.weight} | <strong>Altura:</strong> {retornoDaRequest.height}</p>
+          <h1>{pokemonInfo.name}</h1>
+          <S.PerfilImage alt="imagem do pokemon" src={pokemonInfo?.sprites?.front_default} />
+          <p><strong>#</strong> {pokemonInfo.id}</p>
+          <p><strong>Peso:</strong>{pokemonInfo.weight} | <strong>Altura:</strong> {pokemonInfo.height}</p>
         </>
       )}
-    </Styled.Card>
-    </Styled.CardsContainer>
+    </S.Card>
+    </S.CardsContainer>
   );
 };
