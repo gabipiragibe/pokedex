@@ -6,7 +6,7 @@ import { getPokemonDetails } from "../../service/getPokemonDetails";
 
 export const Pokemons = () => {
   const [pokemonInfo, setPokemonInfo] = useState([]);
-  const [searchPokemon, setSearchPokemon] = useState();
+  const [searchPokemon, setSearchPokemon] = useState(1);
 
   const handleChange = (event) => {
     setSearchPokemon(event.target.value);
@@ -14,12 +14,12 @@ export const Pokemons = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getPokemonDetails(5);
+      const response = await getPokemonDetails(searchPokemon);
       setPokemonInfo(response);
       console.log(response);
     };
     fetchData();
-  }, []);
+  }, [searchPokemon]);
 
   return (
     <>
@@ -30,7 +30,6 @@ export const Pokemons = () => {
           value={searchPokemon}
           onChange={handleChange}
         />
-        <p>{searchPokemon}</p>
       </S.Container>
       <S.CardsContainer>
         <S.Card>
@@ -42,7 +41,7 @@ export const Pokemons = () => {
                 src={pokemonInfo?.sprites?.front_default}
               />
               <p>
-                <strong>#</strong> {pokemonInfo.id}
+                <strong>#ID</strong> {pokemonInfo.id}
               </p>
               <p>
                 <strong>Peso:</strong>
