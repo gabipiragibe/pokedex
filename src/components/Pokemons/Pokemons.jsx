@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { getPokemonDetails } from "../../service/getPokemonDetails";
 
 export const Pokemons = () => {
-  const [pokemonInfo, setPokemonInfo] = useState([]);
+  const [pokemonsInfo, setPokemonsInfo] = useState([]);
   const [searchPokemon, setSearchPokemon] = useState(1);
 
   const handleChange = (event) => {
@@ -14,9 +14,12 @@ export const Pokemons = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getPokemonDetails(searchPokemon);
-      setPokemonInfo(response);
-      console.log(response);
+      const newPokemonsInfo = []; //cria uma nova variável e inicializa como um array vazio ([]).
+      for (let i = 0; i < 5; i++) {
+        const response = await getPokemonDetails(searchPokemon + i);
+        newPokemonsInfo.push(response);
+      }
+      setPokemonsInfo(newPokemonsInfo);
     };
     fetchData();
   }, [searchPokemon]);
@@ -24,33 +27,32 @@ export const Pokemons = () => {
   return (
     <>
       <S.Container>
-        <input
-          type="number"
-          placeholder="Digite um ID"
-          value={searchPokemon}
-          onChange={handleChange}
-        />
+        <label>Buscar Pokemon:</label>
+        <input type="number" value={searchPokemon} onChange={handleChange} />
       </S.Container>
       <S.CardsContainer>
-        <S.Card>
-          {pokemonInfo && (
-            <>
-              <h1>{pokemonInfo.name}</h1>
-              <S.PerfilImage
-                alt="imagem do pokemon"
-                src={pokemonInfo?.sprites?.front_default}
-              />
-              <p>
-                <strong>#ID</strong> {pokemonInfo.id}
-              </p>
-              <p>
-                <strong>Peso:</strong>
-                {pokemonInfo.weight} | <strong>Altura:</strong>{" "}
-                {pokemonInfo.height}
-              </p>
-            </>
-          )}
-        </S.Card>
+        <ol>
+          {pokemonsInfo.map((pokemon, index) => (
+            <li key={index}>
+              <S.Card>
+                <>
+                  <h1>{pokemon.name}</h1>
+                  <S.PerfilImage
+                    alt="imagem do pokemon"
+                    src={pokemon?.sprites?.front_default}
+                  />
+                  <p>
+                    <strong>#ID</strong> {pokemon.id}
+                  </p>
+                  <p>
+                    <strong>Peso:</strong>
+                    {pokemon.weight} | <strong>Altura:</strong> {pokemon.height}
+                  </p>
+                </>
+              </S.Card>
+            </li>
+          ))}
+        </ol>
       </S.CardsContainer>
     </>
   );

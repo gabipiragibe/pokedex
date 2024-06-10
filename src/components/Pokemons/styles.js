@@ -16,7 +16,7 @@ export const CardsContainer = styled.div`
 export const Card = styled.div`
   margin: 20px;
   display: flex;
-  width: 20%;
+  width: 300px;
   font-family: "Courier New", Courier, monospace;
   font-size: medium;
   align-items: center;
