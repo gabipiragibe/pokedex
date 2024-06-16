@@ -7,6 +7,7 @@ import { getPokemonDetails } from "../../service/getPokemonDetails";
 export const Pokemons = () => {
   const [pokemonsInfo, setPokemonsInfo] = useState([]);
   const [searchPokemon, setSearchPokemon] = useState(1);
+  // const [handlePokemon, setHandlePokemon] = useState([]);
 
   const handleChange = (event) => {
     setSearchPokemon(event.target.value);
@@ -14,9 +15,11 @@ export const Pokemons = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const newPokemonsInfo = []; //cria uma nova variável e inicializa como um array vazio ([]).
+      const newPokemonsInfo = [];
       for (let i = 0; i < 5; i++) {
-        const response = await getPokemonDetails(searchPokemon + i);
+        const randomId = (min, max) =>
+          Math.floor(Math.random() * (max - min + 1)) + min;
+        const response = await getPokemonDetails(i + randomId(1, 100));
         newPokemonsInfo.push(response);
       }
       setPokemonsInfo(newPokemonsInfo);
@@ -31,7 +34,7 @@ export const Pokemons = () => {
         <input type="number" value={searchPokemon} onChange={handleChange} />
       </S.Container>
       <S.CardsContainer>
-        <ol>
+        <S.List>
           {pokemonsInfo.map((pokemon, index) => (
             <li key={index}>
               <S.Card>
@@ -52,7 +55,7 @@ export const Pokemons = () => {
               </S.Card>
             </li>
           ))}
-        </ol>
+        </S.List>
       </S.CardsContainer>
     </>
   );

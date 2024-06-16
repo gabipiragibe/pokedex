@@ -29,3 +29,10 @@ export const Card = styled.div`
 export const PerfilImage = styled.img`
   width: 100px;
 `;
+
+export const List = styled.ol`
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  justify-content: space-around;
+`;
