@@ -5,12 +5,18 @@ import React, { useEffect, useState } from "react";
 import { getPokemonDetails } from "../../service/getPokemonDetails";
 
 export const Pokemons = () => {
-  const [pokemonsInfo, setPokemonsInfo] = useState([]);
-  const [searchPokemon, setSearchPokemon] = useState(1);
-  // const [handlePokemon, setHandlePokemon] = useState([]);
+  const [searchPokemon, setSearchPokemon] = useState(null);
+  const [filteredPokemon, setFilteredPokemon] = useState("");
+  const [randomPokemon, setRandomPokemon] = useState([]);
 
-  const handleChange = (event) => {
-    setSearchPokemon(event.target.value);
+  const handleChange = async (event) => {
+    setFilteredPokemon(event.target.value);
+    if (event.target.value) {
+      const response = await getPokemonDetails(parseInt(event.target.value));
+      setSearchPokemon(response);
+    } else {
+      setSearchPokemon(null);
+    }
   };
 
   useEffect(() => {
@@ -19,23 +25,44 @@ export const Pokemons = () => {
       for (let i = 0; i < 5; i++) {
         const randomId = (min, max) =>
           Math.floor(Math.random() * (max - min + 1)) + min;
-        const response = await getPokemonDetails(i + randomId(1, 100));
+        const response = await getPokemonDetails(randomId(1, 100));
         newPokemonsInfo.push(response);
       }
-      setPokemonsInfo(newPokemonsInfo);
+      setRandomPokemon(newPokemonsInfo);
     };
     fetchData();
-  }, [searchPokemon]);
+  }, []);
 
   return (
     <>
       <S.Container>
         <label>Buscar Pokemon:</label>
-        <input type="number" value={searchPokemon} onChange={handleChange} />
+        <input type="number" value={filteredPokemon} onChange={handleChange} />
       </S.Container>
       <S.CardsContainer>
         <S.List>
-          {pokemonsInfo.map((pokemon, index) => (
+          {searchPokemon && (
+            <li>
+              <S.Card>
+                <>
+                  <h1>{searchPokemon.name}</h1>
+                  <S.PerfilImage
+                    alt="imagem do pokemon"
+                    src={searchPokemon?.sprites?.front_default}
+                  />
+                  <p>
+                    <strong>#ID</strong> {searchPokemon.id}
+                  </p>
+                  <p>
+                    <strong>Peso:</strong>
+                    {searchPokemon.weight} | <strong>Altura:</strong>{" "}
+                    {searchPokemon.height}
+                  </p>
+                </>
+              </S.Card>
+            </li>
+          )}
+          {randomPokemon.map((pokemon, index) => (
             <li key={index}>
               <S.Card>
                 <>
