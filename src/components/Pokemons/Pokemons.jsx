@@ -5,18 +5,25 @@ import React, { useEffect, useState } from "react";
 import { getPokemonDetails } from "../../service/getPokemonDetails";
 
 export const Pokemons = () => {
-  const [searchPokemon, setSearchPokemon] = useState(null);
-  const [filteredPokemon, setFilteredPokemon] = useState("");
-  const [randomPokemon, setRandomPokemon] = useState([]);
+  const [searchPokemon, setSearchPokemon] = useState(); //Armazena os detalhes do Pokémon buscado
+  const [filteredPokemon, setFilteredPokemon] = useState(""); //Armazena o valor atual do input
+  const [randomPokemon, setRandomPokemon] = useState([]); //Armazena lista de Pokémons aleatórios.
+  const [pokemonInfo, setPokemonInfo] = useState(null); //armazenar id do pokemon, que as infos vao ser exibidas no click
 
   const handleChange = async (event) => {
-    setFilteredPokemon(event.target.value);
-    if (event.target.value) {
-      const response = await getPokemonDetails(parseInt(event.target.value));
+    const { value } = event.target;
+    setFilteredPokemon(value);
+    if (value) {
+      const response = await getPokemonDetails(parseInt(value));
       setSearchPokemon(response);
     } else {
-      setSearchPokemon(null);
+      setSearchPokemon();
     }
+  };
+
+  const handleClick = (pokemonId) => {
+    console.log("clicccck", pokemonId);
+    setPokemonInfo(pokemonId === pokemonInfo ? null : pokemonId);
   };
 
   useEffect(() => {
@@ -42,7 +49,7 @@ export const Pokemons = () => {
       <S.CardsContainer>
         <S.List>
           {searchPokemon && (
-            <li>
+            <li onClick={() => handleClick(searchPokemon.id)}>
               <S.Card>
                 <>
                   <h1>{searchPokemon.name}</h1>
@@ -63,7 +70,7 @@ export const Pokemons = () => {
             </li>
           )}
           {randomPokemon.map((pokemon, index) => (
-            <li key={index}>
+            <li key={index} onClick={() => handleClick(pokemon.id)}>
               <S.Card>
                 <>
                   <h1>{pokemon.name}</h1>
