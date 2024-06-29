@@ -2,6 +2,7 @@ import * as S from "./styles";
 
 import React, { useEffect, useState } from "react";
 
+import { Card } from "../Cards/Card";
 import { getPokemonDetails } from "../../service/getPokemonDetails";
 
 export const Pokemons = () => {
@@ -50,43 +51,12 @@ export const Pokemons = () => {
         <S.List>
           {searchPokemon && (
             <li onClick={() => handleClick(searchPokemon.id)}>
-              <S.Card>
-                <>
-                  <h1>{searchPokemon.name}</h1>
-                  <S.PerfilImage
-                    alt="imagem do pokemon"
-                    src={searchPokemon?.sprites?.front_default}
-                  />
-                  <p>
-                    <strong>#ID</strong> {searchPokemon.id}
-                  </p>
-                  <p>
-                    <strong>Peso:</strong>
-                    {searchPokemon.weight} | <strong>Altura:</strong>{" "}
-                    {searchPokemon.height}
-                  </p>
-                </>
-              </S.Card>
+              <Card details={searchPokemon} />
             </li>
           )}
           {randomPokemon.map((pokemon, index) => (
             <li key={index} onClick={() => handleClick(pokemon.id)}>
-              <S.Card>
-                <>
-                  <h1>{pokemon.name}</h1>
-                  <S.PerfilImage
-                    alt="imagem do pokemon"
-                    src={pokemon?.sprites?.front_default}
-                  />
-                  <p>
-                    <strong>#ID</strong> {pokemon.id}
-                  </p>
-                  <p>
-                    <strong>Peso:</strong>
-                    {pokemon.weight} | <strong>Altura:</strong> {pokemon.height}
-                  </p>
-                </>
-              </S.Card>
+              <Card details={pokemon} />
             </li>
           ))}
         </S.List>
