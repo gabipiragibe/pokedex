@@ -2,7 +2,7 @@ import { Container, Title } from "./styles";
 
 import React from "react";
 
-export const Navbar = () => {
+export const Header = () => {
   return (
     <Container>
       <Title>Pokédex</Title>
