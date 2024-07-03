@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { getPokemonDetails } from "../../service/getPokemonDetails";
 
-export const PokemonSearchInput = ({ setSearchPokemon }) => {
+export const SearchInput = ({ setSearchedPokemon }) => {
   const [filteredPokemon, setFilteredPokemon] = useState("");
 
   const onPokemonInput = async (event) => {
@@ -10,14 +10,14 @@ export const PokemonSearchInput = ({ setSearchPokemon }) => {
     setFilteredPokemon(value);
     if (value) {
       const response = await getPokemonDetails(parseInt(value));
-      setSearchPokemon(response);
+      setSearchedPokemon(response);
     } else {
-      setSearchPokemon();
+      setSearchedPokemon();
     }
   };
   return (
     <div>
-      <label>Buscar Pokemon:</label>
+      <label>Buscar Pokemon: </label>
       <input type="number" value={filteredPokemon} onChange={onPokemonInput} />
     </div>
   );
