@@ -30,7 +30,7 @@ export const Home = () => {
 
   return (
     <>
-      <Header/>
+      <Header />
       <S.Container>
         <SearchInput setSearchedPokemon={setSearchedPokemon} />
       </S.Container>
@@ -51,3 +51,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;
