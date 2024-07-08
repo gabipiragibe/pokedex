@@ -12,6 +12,7 @@ export const Home = () => {
 
   const handleClick = (pokemonId) => {
     setPokemonData(pokemonId === pokemonData ? null : pokemonId);
+    window.location.href = `/details/${pokemonId}`;
   };
 
   useEffect(() => {
