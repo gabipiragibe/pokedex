@@ -8,7 +8,7 @@ import { getPokemonDetails } from "../service/getPokemonDetails";
 export const Home = () => {
   const [searchedPokemon, setSearchedPokemon] = useState();
   const [listPokemon, setListPokemon] = useState([]); //Armazena lista de Pokémons aleatórios.
-  const [pokemonData, setPokemonData] = useState(null); //armazenar id do pokemon, que as infos vao ser exibidas no click
+  const [pokemonData, setPokemonData] = useState(); //armazenar id do pokemon, que as infos vao ser exibidas no click
 
   const handleClick = (pokemonId) => {
     setPokemonData(pokemonId === pokemonData ? null : pokemonId);
