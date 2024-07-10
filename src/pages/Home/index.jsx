@@ -1,9 +1,9 @@
 import * as S from "./styles";
 
-import { Card, Header, SearchInput } from "../components";
+import { Card, Header, SearchInput } from "../../components";
 import React, { useEffect, useState } from "react";
 
-import { getPokemonDetails } from "../service/getPokemonDetails";
+import { getPokemonDetails } from "../../service/getPokemonDetails";
 
 export const Home = () => {
   const [searchedPokemon, setSearchedPokemon] = useState();

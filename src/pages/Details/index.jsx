@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, Header } from "..";
+import { Card, Header } from "../../components";
 import { useParams } from "react-router-dom";
 import { getPokemonDetails } from "../../service/getPokemonDetails";
 
