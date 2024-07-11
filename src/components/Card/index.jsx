@@ -6,7 +6,7 @@ export const Card = ({ details }) => (
     <>
       <h1>{details.name}</h1>
       <S.PerfilImage
-        alt="imagem do details"
+        alt="imagem do pokemon"
         src={details?.sprites?.front_default}
       />
       <p>

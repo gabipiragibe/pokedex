@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, Header } from "../../components";
+import { Header } from "../../components";
 import { useParams } from "react-router-dom";
 import { getPokemonDetails } from "../../service/getPokemonDetails";
 
@@ -16,17 +16,26 @@ export const Details = () => {
     };
     fetchDetails();
   }, [pokemonId]);
-
+  console.log("pokeDetails", pokemonsDetails);
   return (
-    <div>
+    <div style={{ backgrounColor: "green" }}>
       <Header />
-      <S.Container>
-        {pokemonsDetails ? (
-          <Card details={pokemonsDetails} />
-        ) : (
-          <h1>Carregando...</h1>
-        )}
-      </S.Container>
+      {pokemonsDetails && (
+        <S.Container>
+          <S.Photo
+            alt="imagem do pokemon"
+            src={pokemonsDetails?.sprites?.front_default}
+          />
+          <S.Photo
+            alt="imagem do pokemon"
+            src={pokemonsDetails?.sprites?.back_default}
+          />
+          <S.PrincipalInfos>
+            <p>Nome: {pokemonsDetails.name}</p>
+            <p>ID: {pokemonsDetails.id}</p>{" "}
+          </S.PrincipalInfos>
+        </S.Container>
+      )}
     </div>
   );
 };
