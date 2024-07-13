@@ -2,6 +2,7 @@ import * as S from "./styles";
 
 import { Card, Header, SearchInput } from "../../components";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { getPokemonDetails } from "../../service/getPokemonDetails";
 
@@ -9,10 +10,11 @@ export const Home = () => {
   const [searchedPokemon, setSearchedPokemon] = useState();
   const [listPokemon, setListPokemon] = useState([]); //Armazena lista de Pokémons aleatórios.
   const [pokemonData, setPokemonData] = useState(); //armazenar id do pokemon, que as infos vao ser exibidas no click
+  const navigate = useNavigate();
 
   const handleClick = (pokemonId) => {
     setPokemonData(pokemonId === pokemonData ? null : pokemonId);
-    window.location.href = `/details/${pokemonId}`;
+    navigate(`/details/${pokemonId}`);
   };
 
   useEffect(() => {

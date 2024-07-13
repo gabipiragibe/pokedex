@@ -1,5 +1,18 @@
 import styled from "styled-components";
 
+export const Button = styled.button`
+  display: flex;
+  width: 90px;
+  height: 35px;
+  margin: 50px;
+  color: white;
+  border: transparent;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000ba;
+`;
+
 export const Container = styled.div`
   display: flex;
   justify-content: center;
