@@ -1,11 +1,11 @@
-import { Container, Title } from "./styles";
+import * as S from "./styles";
 
 import React from "react";
 
 export const Header = () => {
   return (
-    <Container>
-      <Title>Pokédex</Title>
-    </Container>
+    <S.Container>
+      <S.Title>Pokédex</S.Title>
+    </S.Container>
   );
 };

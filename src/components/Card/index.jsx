@@ -4,17 +4,17 @@ import React from "react";
 export const Card = ({ details }) => (
   <S.Card>
     <>
-      <h1>{details.name}</h1>
+      <h1>{details.name.toUpperCase()}</h1>
       <S.PerfilImage
-        alt="imagem do pokemon"
+        alt="imagem do pokemon de frente"
         src={details?.sprites?.front_default}
       />
       <p>
-        <strong>#ID</strong> {details.id}
+        <b>#ID</b> {details.id}
       </p>
       <p>
-        <strong>Peso:</strong>
-        {details.weight} | <strong>Altura:</strong> {details.height}
+        <b>Peso:</b>
+        {details.weight} | <b>Altura:</b> {details.height}
       </p>
     </>
   </S.Card>

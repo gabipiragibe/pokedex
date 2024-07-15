@@ -5,12 +5,12 @@ export const Button = styled.button`
   width: 90px;
   height: 35px;
   margin: 50px;
-  color: white;
+  color: #fff;
   border: transparent;
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  background-color: #000000ba;
+  background-color: #4b4b4b;
 `;
 
 export const Container = styled.div`

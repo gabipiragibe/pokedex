@@ -12,7 +12,7 @@ export const Details = () => {
 
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/`);
+    navigate("/");
   };
 
   useEffect(() => {
@@ -22,7 +22,6 @@ export const Details = () => {
     };
     fetchDetails();
   }, [pokemonId]);
-  console.log("pokeDetails", pokemonsDetails);
 
   return (
     <div style={{ backgrounColor: "green" }}>
@@ -32,16 +31,20 @@ export const Details = () => {
         <>
           <S.Container>
             <S.Photo
-              alt="imagem do pokemon"
+              alt="imagem do pokemon de frente"
               src={pokemonsDetails?.sprites?.front_default}
             />
             <S.Photo
-              alt="imagem do pokemon"
+              alt="imagem do pokemon de costas"
               src={pokemonsDetails?.sprites?.back_default}
             />
             <S.PrincipalInfos>
-              <p>Nome: {pokemonsDetails.name}</p>
-              <p>ID: {pokemonsDetails.id}</p>{" "}
+              <p>
+                Nome:{" "}
+                {pokemonsDetails.name.charAt(0).toUpperCase() +
+                  pokemonsDetails.name.slice(1)}
+              </p>
+              <p>ID: {pokemonsDetails.id}</p>
             </S.PrincipalInfos>
           </S.Container>
           <BasicInformations informations={pokemonsDetails} />

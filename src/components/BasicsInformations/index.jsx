@@ -4,16 +4,16 @@ export const BasicInformations = ({ informations }) => {
   return (
     <S.BasicsInformations>
       <S.Text>
-        <strong>Altura:</strong> {informations.height}
+        <b>Altura:</b> {informations.height}
       </S.Text>
       <S.Text>
-        <strong>Peso:</strong> {informations.weight}
+        <b>Peso:</b> {informations.weight}
       </S.Text>
       <S.Text>
-        <strong>Experiência base:</strong> {informations.base_experience}
+        <b>Experiência base:</b> {informations.base_experience}
       </S.Text>
       <S.Text>
-        <strong>Ordem:</strong> {informations.order}
+        <b>Ordem:</b> {informations.order}
       </S.Text>
     </S.BasicsInformations>
   );
