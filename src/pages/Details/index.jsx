@@ -3,7 +3,7 @@ import { BasicInformations, Header } from "../../components";
 import { useParams } from "react-router-dom";
 import { getPokemonDetails } from "../../service/getPokemonDetails";
 import { useNavigate } from "react-router-dom";
-import PokemonNavigator from "../../components/PokemonNavigator";
+import ButtonNavigation from "../../components/ButtonNavigation";
 
 import * as S from "./styles";
 
@@ -49,7 +49,7 @@ export const Details = () => {
             </S.PrincipalInfos>
           </S.Container>
           <BasicInformations informations={pokemonsDetails} />
-          <PokemonNavigator />
+          <ButtonNavigation />
         </>
       )}
     </div>

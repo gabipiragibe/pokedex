@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import * as S from "./styles";
 
-export const PokemonNavigator = () => {
+export const ButtonNavigation = () => {
   const { pokemonId } = useParams(); // acessar parametros da rota
   const navigate = useNavigate();
 
@@ -23,4 +23,4 @@ export const PokemonNavigator = () => {
   );
 };
 
-export default PokemonNavigator;
+export default ButtonNavigation;
