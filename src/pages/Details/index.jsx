@@ -3,6 +3,7 @@ import { BasicInformations, Header } from "../../components";
 import { useParams } from "react-router-dom";
 import { getPokemonDetails } from "../../service/getPokemonDetails";
 import { useNavigate } from "react-router-dom";
+import PokemonNavigator from "../../components/PokemonNavigator";
 
 import * as S from "./styles";
 
@@ -25,8 +26,8 @@ export const Details = () => {
 
   return (
     <div style={{ backgrounColor: "green" }}>
+      <S.Button onClick={handleClick}>Menu Principal</S.Button>
       <Header />
-      <S.Button onClick={handleClick}>Voltar</S.Button>
       {pokemonsDetails && (
         <>
           <S.Container>
@@ -48,6 +49,7 @@ export const Details = () => {
             </S.PrincipalInfos>
           </S.Container>
           <BasicInformations informations={pokemonsDetails} />
+          <PokemonNavigator />
         </>
       )}
     </div>

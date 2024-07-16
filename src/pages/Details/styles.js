@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Button = styled.button`
   display: flex;
-  width: 90px;
+  width: 140px;
   height: 35px;
   margin: 50px;
   color: #fff;
