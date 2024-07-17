@@ -6,6 +6,11 @@ export const getPokemonDetails = (uuid) => {
     .then(function (response) {
       console.log("response", response);
       return response.data;
+    })
+    .catch(function (error) {
+      const errorMessage = "Esse pokemon não existe, busque outro!";
+      alert(errorMessage);
+      return null;
     });
   return data;
 };

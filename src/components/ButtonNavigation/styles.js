@@ -6,8 +6,8 @@ export const Container = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 90px;
-  height: 35px;
+  width: 100px;
+  height: 45px;
   margin: 50px;
   color: #fff;
   border: transparent;
