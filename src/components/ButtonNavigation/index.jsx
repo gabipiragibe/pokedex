@@ -18,10 +18,10 @@ export const ButtonNavigation = () => {
   return (
     <S.Container>
       <S.Button onClick={handlePrevious}>
-        Anterior {parseInt(pokemonId) - 1}
+        Anterior ID: {parseInt(pokemonId) - 1}
       </S.Button>
       <S.Button onClick={handleNext}>
-        Próximo {parseInt(pokemonId) + 1}
+        Próximo ID: {parseInt(pokemonId) + 1}
       </S.Button>
     </S.Container>
   );

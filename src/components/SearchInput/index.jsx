@@ -2,19 +2,31 @@ import React, { useState } from "react";
 
 import { getPokemonDetails } from "../../service/getPokemonDetails";
 
-export const SearchInput = ({ setSearchedPokemon }) => {
+export const SearchInput = ({ setSearchedPokemon, setSearchError }) => {
   const [filteredPokemon, setFilteredPokemon] = useState("");
 
   const onPokemonInput = async (event) => {
     const { value } = event.target;
     setFilteredPokemon(value);
     if (value) {
-      const response = await getPokemonDetails(parseInt(value));
-      setSearchedPokemon(response);
+      try {
+        const response = await getPokemonDetails(parseInt(value));
+        if (response) {
+          setSearchedPokemon(response);
+          setSearchError(null); // limpa qualquer erro anterior
+        } else {
+          throw new Error("Pokémon não encontrado, busque outro ID.");
+        }
+      } catch (error) {
+        setSearchError(error.message);
+        setSearchedPokemon(null);
+      }
     } else {
-      setSearchedPokemon();
+      setSearchedPokemon(null);
+      setSearchError(null); // limpa o erro quando não há entrada
     }
   };
+
   return (
     <div>
       <label>Buscar Pokemon: </label>

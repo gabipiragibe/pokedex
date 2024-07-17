@@ -8,8 +8,6 @@ export const getPokemonDetails = (uuid) => {
       return response.data;
     })
     .catch(function (error) {
-      const errorMessage = "Esse pokemon não existe, busque outro!";
-      alert(errorMessage);
       return null;
     });
   return data;
