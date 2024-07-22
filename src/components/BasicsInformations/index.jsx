@@ -4,7 +4,7 @@ export const BasicInformations = ({ informations }) => {
   const infos = [
     { label: "Altura", value: informations.height },
     { label: "Peso", value: informations.weight },
-    { label: "Expereiência base", value: informations.base_experience },
+    { label: "Experiência base", value: informations.base_experience },
     { label: "Ordem", value: informations.order },
   ];
   return (
@@ -12,13 +12,13 @@ export const BasicInformations = ({ informations }) => {
       <S.Text>
         <b>Habilidades: </b>
         {informations.abilities.map((index) => (
-          <span key={index.ability.name}>{index.ability.name}, </span>
+          <span key={index.ability.name}> {index.ability.name}, </span>
         ))}
       </S.Text>
       <S.Text>
         <b>Tipo: </b>
         {informations.types.map((index) => (
-          <span key={index.type.name}>{index.type.name} </span>
+          <span key={index.type.name}> {index.type.name} </span>
         ))}
       </S.Text>
       <S.Text>
@@ -30,11 +30,9 @@ export const BasicInformations = ({ informations }) => {
         ))}
       </S.Text>
       {infos.map((index) => (
-        <>
-          <S.Text key={index.label}>
-            <b>{index.label}:</b> {index.value}
-          </S.Text>
-        </>
+        <S.Text key={index.label}>
+          <b>{index.label}:</b> {index.value}
+        </S.Text>
       ))}
     </S.BasicsInformations>
   );
