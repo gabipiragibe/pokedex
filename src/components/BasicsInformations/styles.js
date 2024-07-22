@@ -1,16 +1,16 @@
 import styled from "styled-components";
 export const BasicsInformations = styled.div`
-  width: 100%;
-  height: 200px;
-  gap: 10px 30px;
   display: flex;
-  flex-wrap: wrap;
+  gap: 10px;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 `;
 
 export const Text = styled.div`
   font-family: "Courier New", Courier;
-  justify-content: center;
-  align-content: center;
+  display: flex;
   font-size: 20px;
+  align-items: center;
+  align-content: center;
 `;
