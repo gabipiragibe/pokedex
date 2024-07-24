@@ -4,10 +4,12 @@ import { useParams } from "react-router-dom";
 import { getPokemonDetails } from "../../service/getPokemonDetails";
 import { useNavigate } from "react-router-dom";
 import ButtonNavigation from "../../components/ButtonNavigation";
+import { useTranslation } from "react-i18next";
 
 import * as S from "./styles";
 
 export const Details = () => {
+  const { t } = useTranslation();
   const { pokemonId } = useParams();
   const [pokemonsDetails, setPokemonsDetails] = useState();
 
@@ -26,7 +28,7 @@ export const Details = () => {
 
   return (
     <div style={{ backgrounColor: "green" }}>
-      <S.Button onClick={handleClick}>Menu Principal</S.Button>
+      <S.Button onClick={handleClick}>Voltar</S.Button>
       <Header />
       {pokemonsDetails && (
         <>
@@ -40,12 +42,12 @@ export const Details = () => {
               src={pokemonsDetails?.sprites?.back_default}
             />
             <S.PrincipalInfos>
-              <p>
-                Nome:{" "}
-                {pokemonsDetails.name.charAt(0).toUpperCase() +
-                  pokemonsDetails.name.slice(1)}
-              </p>
-              <p>ID: {pokemonsDetails.id}</p>
+              {t("details.name")}:{" "}
+              {pokemonsDetails.name.charAt(0).toUpperCase() +
+                pokemonsDetails.name.slice(1)}
+              <S.PrincipalInfos>
+                {t("details.ID")}: {pokemonsDetails.id}
+              </S.PrincipalInfos>
             </S.PrincipalInfos>
           </S.Container>
           <BasicInformations informations={pokemonsDetails} />
