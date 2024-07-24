@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { getPokemonDetails } from "../../service/getPokemonDetails";
 
 export const SearchInput = ({ setSearchedPokemon, setSearchError }) => {
+  const { t } = useTranslation();
   const [filteredPokemon, setFilteredPokemon] = useState("");
 
   const onPokemonInput = async (event) => {
@@ -29,7 +31,7 @@ export const SearchInput = ({ setSearchedPokemon, setSearchError }) => {
 
   return (
     <div>
-      <label>Buscar Pokemon: </label>
+      <label>{t("search.label")}</label>
       <input type="number" value={filteredPokemon} onChange={onPokemonInput} />
     </div>
   );

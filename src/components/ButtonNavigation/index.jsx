@@ -1,8 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import * as S from "./styles";
 
 export const ButtonNavigation = () => {
-  const { pokemonId } = useParams(); // acessar parametros da rota
+  const { t } = useTranslation();
+  const { pokemonId } = useParams();
   const navigate = useNavigate();
 
   const handlePrevious = () => {
@@ -18,10 +20,10 @@ export const ButtonNavigation = () => {
   return (
     <S.Container>
       <S.Button onClick={handlePrevious}>
-        Anterior ID: {parseInt(pokemonId) - 1}
+        {t("button_navigation.previous_id")}: {parseInt(pokemonId) - 1}
       </S.Button>
       <S.Button onClick={handleNext}>
-        Próximo ID: {parseInt(pokemonId) + 1}
+        {t("button_navigation.next_id")}: {parseInt(pokemonId) + 1}
       </S.Button>
     </S.Container>
   );

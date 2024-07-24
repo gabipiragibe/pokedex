@@ -46,7 +46,7 @@ export const Details = () => {
               {pokemonsDetails.name.charAt(0).toUpperCase() +
                 pokemonsDetails.name.slice(1)}
               <S.PrincipalInfos>
-                {t("details.ID")}: {pokemonsDetails.id}
+                {t("details.id")}: {pokemonsDetails.id}
               </S.PrincipalInfos>
             </S.PrincipalInfos>
           </S.Container>
