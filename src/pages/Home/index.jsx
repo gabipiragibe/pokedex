@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { getPokemonDetails } from "../../service/getPokemonDetails";
 
 export const Home = () => {
-  const [searchedPokemon, setSearchedPokemon] = useState();
   const [listPokemon, setListPokemon] = useState([]); //Armazena lista de Pokémons aleatórios.
   const [pokemonData, setPokemonData] = useState(); //armazenar id do pokemon, que as infos vao ser exibidas no click
   const [error, setError] = useState();
@@ -49,10 +48,7 @@ export const Home = () => {
       <Header />
 
       <S.Container>
-        <SearchInput
-          setSearchedPokemon={setSearchedPokemon}
-          setSearchError={handleError}
-        />
+        <SearchInput setSearchError={handleError} />
         {error && (
           <div
             style={{
@@ -68,11 +64,6 @@ export const Home = () => {
       </S.Container>
       <S.CardsContainer>
         <S.List>
-          {searchedPokemon && (
-            <li onClick={() => handleClick(searchedPokemon.id)}>
-              <Card details={searchedPokemon} />
-            </li>
-          )}
           {listPokemon.map((pokemon, index) => (
             <li key={index} onClick={() => handleClick(pokemon.id)}>
               <Card details={pokemon} />
