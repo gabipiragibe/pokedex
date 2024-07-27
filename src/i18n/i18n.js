@@ -1,12 +1,12 @@
 import i18next from "i18next";
-import translations from "../locales/pt-BR/translation.json";
+import ptbr from "../locales/pt-br/ptbr.json";
 
 i18next.init({
   lng: "pt-BR",
   debug: true,
   resources: {
     "pt-BR": {
-      translation: translations,
+      translation: ptbr,
     },
   },
 });

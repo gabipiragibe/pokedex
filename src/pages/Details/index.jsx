@@ -34,19 +34,19 @@ export const Details = () => {
         <>
           <S.Container>
             <S.Photo
-              alt="imagem do pokemon de frente"
+              alt={t("images.front_default")}
               src={pokemonsDetails?.sprites?.front_default}
             />
             <S.Photo
-              alt="imagem do pokemon de costas"
+              alt={t("images.back_default")}
               src={pokemonsDetails?.sprites?.back_default}
             />
             <S.PrincipalInfos>
-              {t("details.name")}:{" "}
+              {t("pokemon_infos.name")}:{" "}
               {pokemonsDetails.name.charAt(0).toUpperCase() +
                 pokemonsDetails.name.slice(1)}
               <S.PrincipalInfos>
-                {t("details.id")}: {pokemonsDetails.id}
+                {t("pokemon_infos.id")}: {pokemonsDetails.id}
               </S.PrincipalInfos>
             </S.PrincipalInfos>
           </S.Container>

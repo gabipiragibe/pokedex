@@ -1,0 +1,26 @@
+{ 
+  "pokemon_infos": {
+  "id": "#ID",
+  "weight": "Peso",
+  "height": "Altura",
+  "name": "Nome"
+},
+  "header": {
+    "title": "Pokédex"
+  },
+  "search": {
+    "label": "Buscar Pokémon: "
+  },
+  "buttons": {
+    "previous_id": "Anterior ID",
+    "next_id": "Próximo ID"
+  },
+  "images": {
+    "front_default": "Imagem do pokemon de frente",
+    "back_default": "Imagem do pokemon de costas"
+  },
+  "error": {
+    "not_found": "Pokémon não encontrado, ",
+    "server_error": "Erro no servidor"
+  }
+}
