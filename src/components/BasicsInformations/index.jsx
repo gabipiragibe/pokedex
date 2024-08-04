@@ -1,6 +1,9 @@
 import React from "react";
 import * as S from "./styles";
 export const BasicInformations = ({ informations }) => {
+  if (!informations) {
+    return null;
+  }
   const infos = [
     { label: "Altura", value: informations.height },
     { label: "Peso", value: informations.weight },

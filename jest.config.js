@@ -1,5 +1,9 @@
 module.exports = {
   testMatch: ["**/?(*.)+(spec|test).[jt]s?(x)"],
   testEnvironment: "jsdom",
-  setupFilesAfterEnv: ["<rootDir>/src/setupTests.js"],
+  setupFilesAfterEnv: ["<rootDir>/.jest/setupTests.js"],
+  moduleNameMapper: {
+    "\\.(gif|ttf|eot|svg)$": "<rootDir>/.jest/mocks/fileMock.js",
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+  },
 };

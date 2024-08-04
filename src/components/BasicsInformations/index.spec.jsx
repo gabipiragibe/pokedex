@@ -1,8 +1,12 @@
-import "@testing-library/jest-dom/extend-expect";
+import React from "react";
+import { render } from "@testing-library/react";
+import { BasicInformations } from "./index";
 
-const mockInformations = {
-  height: 10,
-  weight: 20,
-  base_experience: 30,
-  order: 1,
-};
+describe("Jest", () => {
+  it("should work", () => {
+    expect(1).toBe(1);
+  });
+  it("should display elements", () => {
+    render(<BasicInformations />);
+  });
+});
