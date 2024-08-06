@@ -7,7 +7,7 @@ export const BasicInformations = ({ informations }) => {
   const infos = [
     { label: "Altura", value: informations.height },
     { label: "Peso", value: informations.weight },
-    { label: "Expereiência base", value: informations.base_experience },
+    { label: "Experiência base", value: informations.base_experience },
     { label: "Ordem", value: informations.order },
   ];
   return (
