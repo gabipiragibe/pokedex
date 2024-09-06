@@ -1,4 +1,7 @@
 module.exports = {
+  transform: {
+    "^.+\\.[t|j]sx?$": "babel-jest",
+  },
   testMatch: ["**/?(*.)+(spec|test).[jt]s?(x)"],
   testEnvironment: "jsdom",
   setupFilesAfterEnv: ["<rootDir>/.jest/setupTests.js"],
