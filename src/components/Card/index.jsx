@@ -25,3 +25,5 @@ export const Card = ({ details }) => {
     </S.Card>
   );
 };
+
+export default Card;

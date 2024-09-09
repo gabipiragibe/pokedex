@@ -20,6 +20,18 @@ export const Home = () => {
     navigate(`/details/${pokemonId}`);
   };
 
+  const filterFireType = () => {
+    const firePokemons = listPokemon.find((pokemon) =>
+      pokemon.types.some((type) => type.type.name === "fire")
+    );
+    console.log("firePokemons", firePokemons);
+    if (firePokemons) {
+      navigate(`/details/${firePokemons.id}`);
+    } else {
+      console.error("Nenhum pokemon do tipo fogo encontrado.");
+    }
+  };
+
   const handleError = (errorMessage) => {
     setError(errorMessage);
   };
@@ -46,7 +58,7 @@ export const Home = () => {
   return (
     <>
       <Header />
-
+      <button onClick={filterFireType}>Procurar pokemon de Fogo</button>
       <S.Container>
         <SearchInput setSearchError={handleError} />
         {error && (

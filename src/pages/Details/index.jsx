@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { BasicInformations, Header } from "../../components";
-import { useParams } from "react-router-dom";
+
 import { getPokemonDetails } from "../../service/getPokemonDetails";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ButtonNavigation from "../../components/ButtonNavigation";
 import { useTranslation } from "react-i18next";
 
