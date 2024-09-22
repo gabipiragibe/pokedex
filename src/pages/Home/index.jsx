@@ -1,6 +1,6 @@
 import * as S from "./styles";
 
-import { Card, Header, SearchInput, Error } from "../../components";
+import { Card, Header, SearchInput, Error, Modal } from "../../components";
 import React, { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import ErrorAnimation from "../../components/Error/assets/error-animation.json";
@@ -18,18 +18,6 @@ export const Home = () => {
   const handleClick = (pokemonId) => {
     setPokemonData(pokemonId === pokemonData ? null : pokemonId);
     navigate(`/details/${pokemonId}`);
-  };
-
-  const filterFireType = () => {
-    const firePokemons = listPokemon.find((pokemon) =>
-      pokemon.types.some((type) => type.type.name === "fire")
-    );
-    console.log("firePokemons", firePokemons);
-    if (firePokemons) {
-      navigate(`/details/${firePokemons.id}`);
-    } else {
-      console.error("Nenhum pokemon do tipo fogo encontrado.");
-    }
   };
 
   const handleError = (errorMessage) => {
@@ -58,7 +46,6 @@ export const Home = () => {
   return (
     <>
       <Header />
-      <button onClick={filterFireType}>Procurar pokemon de Fogo</button>
       <S.Container>
         <SearchInput setSearchError={handleError} />
         {error && (
@@ -83,6 +70,7 @@ export const Home = () => {
           ))}
         </S.List>
       </S.CardsContainer>
+      <Modal />
     </>
   );
 };
