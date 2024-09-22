@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as S from "./styles";
-import { getPokemon } from "../../service/getPokemonDetails";
+import { getPokemon, getPokemonDetails } from "../../service/getPokemonDetails";
+import { Card } from "../Card";
 
 export const Modal = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [type, setType] = useState(""); //Armazena o tipo de Pokémon.
+  const [type, setType] = useState("");
   const [habitat, setHabitat] = useState("");
-  const [pokemonsData, setPokemonsData] = useState([]); //Armazena lista de Pokémons por tipo.
-  const [habitatData, setHabitatData] = useState([]);
+  const [detailedPokemons, setDetailedPokemons] = useState([]);
 
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
 
-  const fetchPokemonsByType = async (type, habitat) => {
+  const fetchPokemonsByTypeAndHabitat = async (type, habitat) => {
     if (type || habitat) {
       try {
         const response = await getPokemon(
@@ -20,29 +20,46 @@ export const Modal = () => {
           habitat.toLowerCase()
         );
         if (response) {
-          setPokemonsData(response.typeData.pokemon || []);
-          setHabitatData(response.habitatData.pokemon_species || []);
+          const pokemons = response.typeData.pokemon || [];
+          const habitats = response.habitatData.pokemon_species || [];
+          const combinedPokemons = [...pokemons, ...habitats];
+
+          const detailedPokemonsPromises = combinedPokemons.map((pokemon) =>
+            getPokemonDetails(
+              pokemon.pokemon ? pokemon.pokemon.name : pokemon.name
+            )
+          );
+          const detailedPokemonsData = await Promise.all(
+            detailedPokemonsPromises
+          );
+          setDetailedPokemons(detailedPokemonsData);
         } else {
-          setPokemonsData([]);
-          setHabitatData([]);
+          setDetailedPokemons([]);
         }
       } catch (error) {
-        setPokemonsData([]);
-        setHabitatData([]);
+        setDetailedPokemons([]);
         console.error(error);
       }
     } else {
-      setPokemonsData([]);
-      setHabitatData([]);
+      setDetailedPokemons([]);
     }
   };
 
-  useEffect(() => {
-    fetchPokemonsByType(type, habitat);
-  }, [type, habitat]);
+  const onTypeChange = (event) => {
+    const value = event.target.value;
+    setType(value);
+    if (!value && !habitat) {
+      setDetailedPokemons([]);
+    }
+  };
 
-  const onTypeChange = (event) => setType(event.target.value);
-  const onHabitatChange = (event) => setHabitat(event.target.value);
+  const onHabitatChange = (event) => {
+    const value = event.target.value;
+    setHabitat(value);
+    if (!value && !type) {
+      setDetailedPokemons([]);
+    }
+  };
 
   const filterFieldsInput = [
     {
@@ -61,43 +78,38 @@ export const Modal = () => {
 
   const filteredFieldsInput = filterFieldsInput.map(
     ({ label, name, value, onChange }) => (
-      <label key={name}>
-        <br />
+      <label key={name} style={{ padding: "10px" }}>
         {label}:
         <input type="text" name={name} value={value} onChange={onChange} />
       </label>
     )
   );
 
-  const limitedPokemonsData = pokemonsData.slice(0, 5);
-  const limitedHabitatData = habitatData.slice(0, 5);
+  const limitedDetailedPokemons = detailedPokemons.slice(0, 10);
 
   return (
     <S.Container>
-      <S.openModalButton onClick={openModal}>Abrir Modal</S.openModalButton>
+      <S.openModalButton onClick={openModal}>
+        Ver pokémons por filtro
+      </S.openModalButton>
       <S.modalContainer isOpen={modalIsOpen} onRequestClose={closeModal}>
         <h2>Filtrar Pokémons</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           {filteredFieldsInput}
-          <button
+          <S.FilterButton
             type="button"
-            onClick={() => fetchPokemonsByType(type, habitat)}
+            onClick={() => fetchPokemonsByTypeAndHabitat(type, habitat)}
           >
             Filtrar
-          </button>
+          </S.FilterButton>
         </form>
-        <div>
-          <ul>
-            {limitedPokemonsData.map((pokemon, index) => (
-              <li key={index}>{pokemon.pokemon.name}</li>
-            ))}
-          </ul>
-          <ul>
-            {limitedHabitatData.map((species, index) => (
-              <li key={index}>{species.name}</li>
-            ))}
-          </ul>
-        </div>
+        <S.List>
+          {limitedDetailedPokemons.map((pokemon, index) => (
+            <li key={index}>
+              <Card details={pokemon} />
+            </li>
+          ))}
+        </S.List>
       </S.modalContainer>
     </S.Container>
   );

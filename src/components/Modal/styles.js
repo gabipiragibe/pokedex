@@ -7,6 +7,9 @@ export const Container = styled.div`
   align-items: center;
 `;
 export const openModalButton = styled.button`
+  border-radius: 10px;
+  padding: 10px 20px;
+  border: none;
   background-color: lightblue;
 `;
 
@@ -16,9 +19,25 @@ export const modalContainer = styled(Modal)`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
-  max-width: 500px;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   background-color: white;
+  max-height: 80%;
+  max-width: 50%;
+  overflow-y: auto;
+`;
+
+export const List = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  list-style-type: none;
+  max-height: 80%;
+  overflow-y: auto;
+  justify-content: center;
+  align-items: center;
+`;
+export const FilterButton = styled.button`
+  border-radius: 10px;
 `;
