@@ -22,5 +22,10 @@
   "error": {
     "not_found": "Pokémon não encontrado, ",
     "server_error": "Erro no servidor"
+  },
+  "modal": {
+    "filters": "Filtros",
+    "filter_button": "Filtrar"
   }
+
 }

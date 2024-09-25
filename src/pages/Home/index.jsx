@@ -61,6 +61,7 @@ export const Home = () => {
           </div>
         )}
       </S.Container>
+      <Modal />
       <S.CardsContainer>
         <S.List>
           {listPokemon.map((pokemon, index) => (
@@ -70,7 +71,6 @@ export const Home = () => {
           ))}
         </S.List>
       </S.CardsContainer>
-      <Modal />
     </>
   );
 };
