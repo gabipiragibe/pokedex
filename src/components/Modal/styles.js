@@ -2,7 +2,9 @@ import styled from "styled-components";
 import Modal from "react-modal";
 
 export const Container = styled.div`
+  margin: 30px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
@@ -31,12 +33,8 @@ export const modalContainer = styled(Modal)`
 export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
   list-style-type: none;
-  max-height: 80%;
-  overflow-y: auto;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
 `;
 export const FilterButton = styled.button`
   border-radius: 10px;

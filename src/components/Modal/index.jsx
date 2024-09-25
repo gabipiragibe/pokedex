@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import * as S from "./styles";
 import { getPokemon, getPokemonDetails } from "../../service/getPokemonDetails";
 import { Card } from "../Card";
+import { useTranslation } from "react-i18next";
 
 export const Modal = () => {
+  const { t } = useTranslation();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [type, setType] = useState("");
   const [habitat, setHabitat] = useState("");
@@ -40,8 +42,6 @@ export const Modal = () => {
         setDetailedPokemons([]);
         console.error(error);
       }
-    } else {
-      setDetailedPokemons([]);
     }
   };
 
@@ -85,32 +85,31 @@ export const Modal = () => {
     )
   );
 
-  const limitedDetailedPokemons = detailedPokemons.slice(0, 10);
+  const limitedDetailedPokemons = detailedPokemons.slice(0, 5);
 
   return (
     <S.Container>
       <S.openModalButton onClick={openModal}>
-        Ver pokémons por filtro
+        {t("modal.filters")}
       </S.openModalButton>
       <S.modalContainer isOpen={modalIsOpen} onRequestClose={closeModal}>
-        <h2>Filtrar Pokémons</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           {filteredFieldsInput}
           <S.FilterButton
             type="button"
             onClick={() => fetchPokemonsByTypeAndHabitat(type, habitat)}
           >
-            Filtrar
+            {t("modal.filter_button")}
           </S.FilterButton>
         </form>
-        <S.List>
-          {limitedDetailedPokemons.map((pokemon, index) => (
-            <li key={index}>
-              <Card details={pokemon} />
-            </li>
-          ))}
-        </S.List>
       </S.modalContainer>
+      <S.List>
+        {limitedDetailedPokemons.map((pokemon, index) => (
+          <li key={index}>
+            <Card details={pokemon} />
+          </li>
+        ))}
+      </S.List>
     </S.Container>
   );
 };
