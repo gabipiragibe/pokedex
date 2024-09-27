@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import * as S from "./styles";
-import { getPokemon, getPokemonDetails } from "../../service/getPokemonDetails";
-import { Card } from "../Card";
+import {
+  getPokemon,
+  getPokemonDetails,
+} from "../../../service/getPokemonDetails";
+import { Card } from "../../Card";
 import { useTranslation } from "react-i18next";
 
 export const Modal = () => {
@@ -80,7 +83,18 @@ export const Modal = () => {
     ({ label, name, value, onChange }) => (
       <label key={name} style={{ padding: "10px" }}>
         {label}:
-        <input type="text" name={name} value={value} onChange={onChange} />
+        {name === "type" ? (
+          <select name={name} value={value} onChange={onChange}>
+            <option value="">Selecione um tipo</option>
+            <option value="Fire">Fire</option>
+            <option value="Water">Water</option>
+            <option value="Grass">Grass</option>
+            <option value="Electric">Electric</option>
+            <option value="Psychic">Psychic</option>
+          </select>
+        ) : (
+          <input type="text" name={name} value={value} onChange={onChange} />
+        )}
       </label>
     )
   );

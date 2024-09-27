@@ -1,6 +1,7 @@
 import * as S from "./styles";
 
-import { Card, Header, SearchInput, Error, Modal } from "../../components";
+import { Card, Header, SearchInput, Error } from "../../components";
+import { Modal } from "../../components/Modal/Modal";
 import React, { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import ErrorAnimation from "../../components/Error/assets/error-animation.json";
