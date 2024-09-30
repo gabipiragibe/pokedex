@@ -8,14 +8,14 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const openModalButton = styled.button`
+export const OpenModalButton = styled.button`
   border-radius: 10px;
   padding: 10px 20px;
   border: none;
   background-color: lightblue;
 `;
 
-export const modalContainer = styled(Modal)`
+export const ModalContainer = styled(Modal)`
   position: absolute;
   top: 50%;
   left: 50%;

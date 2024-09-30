@@ -4,4 +4,4 @@ export * from "./SearchInput";
 export * from "./BasicsInformations";
 export * from "./ButtonNavigation";
 export * from "./Error";
-export * from "./Modal/Modal";
+export * from "./FilterModal/Modal";
