@@ -1,6 +1,6 @@
 import * as S from "./styles";
 import { Card, Header, SearchInput, Error } from "../../components";
-import { Modal } from "../../components/FilterModal/Modal";
+// import { Modal } from "../../components/FilterModal/Modal";
 import React, { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import ErrorAnimation from "../../components/Error/assets/error-animation.json";
@@ -43,9 +43,9 @@ const Home = () => {
     fetchData();
   }, []);
 
-  const updateFilteredPokemon = (pokemonList) => {
-    setFilteredPokemon(pokemonList);
-  };
+  // const updateFilteredPokemon = (pokemonList) => {
+  //   setFilteredPokemon(pokemonList);
+  // };
 
   return (
     <>
@@ -65,7 +65,7 @@ const Home = () => {
           </div>
         )}
       </S.Container>
-      <Modal updateFilteredPokemon={updateFilteredPokemon} />
+      {/* <Modal updateFilteredPokemon={updateFilteredPokemon} /> */}
       <S.CardsContainer>
         <S.List>
           {(filteredPokemon.length > 0 ? filteredPokemon : listPokemon).map(

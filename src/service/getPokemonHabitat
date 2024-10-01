@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const getPokemonDetails = (uuid) => {
+export const getPokemonHabitat = (habitat) => {
   const data = axios
-    .get(`https://pokeapi.co/api/v2/pokemon/${uuid}`)
+    .get(`https://pokeapi.co/api/v2/pokemon-habitat/${habitat}`)
     .then(function (response) {
       console.log("response", response);
       return response.data;
