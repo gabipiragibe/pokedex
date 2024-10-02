@@ -1,6 +1,6 @@
 import * as S from "./styles";
 import { Card, Header, SearchInput, Error } from "../../components";
-// import { Modal } from "../../components/FilterModal/Modal";
+import { Modal } from "../../components/FilterModal/Modal";
 import React, { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import ErrorAnimation from "../../components/Error/assets/error-animation.json";
@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { getPokemonDetails } from "../../service/getPokemonDetails";
 
 const Home = () => {
-  const [listPokemon, setListPokemon] = useState([]); //Armazena lista de Pokémons aleatórios.
-  const [pokemonData, setPokemonData] = useState(); //armazenar id do pokemon, que as infos vao ser exibidas no click
+  const [listPokemon, setListPokemon] = useState([]); // Armazena lista de Pokémons aleatórios.
+  const [pokemonData, setPokemonData] = useState(); // Armazena id do pokemon, que as infos vão ser exibidas no click
   const [error, setError] = useState();
   const [filteredPokemon, setFilteredPokemon] = useState([]);
 
@@ -43,9 +43,9 @@ const Home = () => {
     fetchData();
   }, []);
 
-  // const updateFilteredPokemon = (pokemonList) => {
-  //   setFilteredPokemon(pokemonList);
-  // };
+  const updateFilteredPokemon = (pokemonList) => {
+    setFilteredPokemon(pokemonList);
+  };
 
   return (
     <>
@@ -65,7 +65,7 @@ const Home = () => {
           </div>
         )}
       </S.Container>
-      {/* <Modal updateFilteredPokemon={updateFilteredPokemon} /> */}
+      <Modal updateFilteredPokemon={updateFilteredPokemon} />
       <S.CardsContainer>
         <S.List>
           {(filteredPokemon.length > 0 ? filteredPokemon : listPokemon).map(

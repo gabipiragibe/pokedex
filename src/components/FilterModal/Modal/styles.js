@@ -16,6 +16,10 @@ export const OpenModalButton = styled.button`
 `;
 
 export const ModalContainer = styled(Modal)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   position: absolute;
   top: 50%;
   left: 50%;

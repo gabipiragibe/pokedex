@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import * as S from "./styles";
 import { useTranslation } from "react-i18next";
-import Filters from "../Filters";
+import TypeFilter from "../TypeFilter";
+import HabitatFilter from "../HabitatFilter";
+
 export const Modal = ({ updateFilteredPokemon }) => {
   const { t } = useTranslation();
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
 
@@ -15,10 +18,13 @@ export const Modal = ({ updateFilteredPokemon }) => {
       </S.OpenModalButton>
       {modalIsOpen && (
         <S.ModalContainer isOpen={modalIsOpen} onRequestClose={closeModal}>
-          <Filters updateFilteredPokemon={updateFilteredPokemon} />
+          <p>Escolha 1 filtro por vez</p>
+          <TypeFilter updateFilteredPokemon={updateFilteredPokemon} />
+          <HabitatFilter updateFilteredPokemon={updateFilteredPokemon} />
         </S.ModalContainer>
       )}
     </S.Container>
   );
 };
+
 export default Modal;
