@@ -1,16 +1,17 @@
 import React from "react";
+import * as S from "./styles";
 
 const Select = ({ name, value, onChange, options }) => {
   return (
-    <div>
-      <select name={name} value={value} onChange={onChange}>
+    <S.Container>
+      <S.Select name={name} value={value} onChange={onChange}>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
           </option>
         ))}
-      </select>
-    </div>
+      </S.Select>
+    </S.Container>
   );
 };
 
