@@ -43,10 +43,6 @@ const Home = () => {
     fetchData();
   }, []);
 
-  const updateFilteredPokemon = (pokemonList) => {
-    setFilteredPokemon(pokemonList);
-  };
-
   return (
     <>
       <Header />
@@ -65,7 +61,7 @@ const Home = () => {
           </div>
         )}
       </S.Container>
-      <Modal updateFilteredPokemon={updateFilteredPokemon} />
+      <Modal setFilteredPokemon={setFilteredPokemon} />
       <S.CardsContainer>
         <S.List>
           {(filteredPokemon.length > 0 ? filteredPokemon : listPokemon).map(

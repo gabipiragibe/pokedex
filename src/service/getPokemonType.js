@@ -12,3 +12,16 @@ export const getPokemonType = (type) => {
     });
   return data;
 };
+
+export const getOptions = () => {
+  const data = axios
+    .get(`https://pokeapi.co/api/v2/type/`)
+    .then(function (response) {
+      console.log("response", response);
+      return response.data.results;
+    })
+    .catch(function (error) {
+      return null;
+    });
+  return data;
+};

@@ -1,43 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "../Select";
 import { getPokemonDetails } from "../../../service/getPokemonDetails";
-import { getPokemonHabitat } from "../../../service/getPokemonHabitat";
+import * as HabitatService from "../../../service/getPokemonHabitat";
 
-const HabitatArray = [
-  "cave",
-  "forest",
-  "grassland",
-  "mountain",
-  "rough-terrain",
-  "sea",
-  "urban",
-  "waters-edge",
-];
-
-const HabitatFilter = ({ updateFilteredPokemon }) => {
+const HabitatFilter = ({ setFilteredPokemon }) => {
   const [selectedHabitat, setSelectedHabitat] = useState("");
+  const [habitatOptions, setHabitatOptions] = useState([]);
+
+  useEffect(() => {
+    const fetchHabitats = async () => {
+      const options = await HabitatService.getOptions();
+      setHabitatOptions(options);
+    };
+
+    fetchHabitats();
+  }, []);
 
   const onHabitatChange = async (event) => {
     const habitat = event.target.value;
     setSelectedHabitat(habitat);
 
-    if (!habitat) return updateFilteredPokemon([]);
+    if (!habitat) {
+      throw new Error("Parameter is not a valid habitat!");
+    }
 
     try {
-      const { pokemon_species } = await getPokemonHabitat(habitat);
-      const filteredPokemons = await Promise.all(
-        pokemon_species.map((p) => getPokemonDetails(p.name))
+      const { pokemon_species } = await HabitatService.getPokemonHabitat(
+        habitat
       );
-      updateFilteredPokemon(filteredPokemons);
+      const filteredPokemons = await Promise.all(
+        pokemon_species.map((item) => getPokemonDetails(item.name))
+      );
+      setFilteredPokemon(filteredPokemons);
     } catch (error) {
-      console.error("Erro ao buscar Pokémon:", error);
-      updateFilteredPokemon([]);
+      setFilteredPokemon([]);
     }
   };
 
-  const options = HabitatArray.map((habitat) => ({
-    value: habitat,
-    label: habitat.charAt(0).toUpperCase() + habitat.slice(1),
+  const options = habitatOptions.map((habitat) => ({
+    value: habitat.name, // habitat.name pra corresponder à estrutura de dados
+    label: habitat.name.charAt(0).toUpperCase() + habitat.name.slice(1),
   }));
 
   return (
