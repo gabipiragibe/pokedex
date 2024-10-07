@@ -9,3 +9,5 @@ export const Error = ({ message }) => {
 };
 
 export default Error;
+
+//componente Notification, recebe props message e type
