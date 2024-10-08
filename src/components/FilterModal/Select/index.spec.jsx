@@ -46,6 +46,9 @@ describe("<Select />", () => {
     //simulando o funcionamento do componente Select
 
     const select = screen.getByRole("combobox");
+    //O getByRole "busca pelo papel". Nesse caso, o papel é combobox, que é o papel de um select.
     expect(select).toHaveValue("fire");
   });
 });
+//teste para verificar  se a opcao alterada foi chamada
+//usar o userEvent.click
