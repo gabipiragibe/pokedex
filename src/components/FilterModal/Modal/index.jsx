@@ -19,6 +19,7 @@ export const Modal = ({ setFilteredPokemon }) => {
       {modalIsOpen && (
         <S.ModalContainer isOpen={modalIsOpen} onRequestClose={closeModal}>
           <p>Escolha 1 filtro por vez</p>
+          {/* aplicar i18n */}
           <CategoriesFilter setFilteredPokemon={setFilteredPokemon} />
           <HabitatFilter setFilteredPokemon={setFilteredPokemon} />
         </S.ModalContainer>

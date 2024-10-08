@@ -1,9 +1,9 @@
 import * as S from "./styles";
-import { Card, Header, SearchInput, Error } from "../../components";
+import { Card, Header, SearchInput, Notification } from "../../components";
 import { Modal } from "../../components/FilterModal/Modal";
 import React, { useEffect, useState } from "react";
 import Lottie from "lottie-react";
-import ErrorAnimation from "../../components/Error/assets/error-animation.json";
+import ErrorAnimation from "../../components/Notification/assets/error-animation.json";
 import { useNavigate } from "react-router-dom";
 import { getPokemonDetails } from "../../service/getPokemonDetails";
 
@@ -57,7 +57,7 @@ const Home = () => {
             }}
           >
             <Lottie loop={true} animationData={ErrorAnimation} />
-            <Error message={error} />
+            <Notification message={error} type="error" />
           </div>
         )}
       </S.Container>
