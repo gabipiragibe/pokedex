@@ -66,5 +66,3 @@ const CategoriesFilter = ({ setFilteredPokemon }) => {
 };
 
 export default CategoriesFilter;
-
-//criar testes
