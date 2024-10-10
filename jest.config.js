@@ -9,4 +9,5 @@ module.exports = {
     "\\.(gif|ttf|eot|svg)$": "<rootDir>/.jest/mocks/fileMock.js",
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
   },
+  transformIgnorePatterns: ["/node_modules/(?!(axios)/)"],
 };
